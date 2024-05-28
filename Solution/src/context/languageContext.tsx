@@ -1,34 +1,29 @@
-import { createContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from 'react';
+import React, { createContext, useState, ReactNode, useContext } from 'react';
 
-interface Language {
-  language: string;
-}
+export type LanguageKey = 'en' | 'mk' | 'sq';
 
-interface LanguageContextValue {
-  language: Language;
-  setLanguage: Dispatch<SetStateAction<Language>>;
-}
+type LanguageState = {
+  language: LanguageKey;
+};
 
-export const LanguageContext = createContext<LanguageContextValue>({
-  language: {
-    language: 'en',
-  },
-  setLanguage: () => { },
+type LanguageContextType = {
+  language: LanguageState;
+  setLanguage: (lang: LanguageState) => void;
+};
+
+export const LanguageContext = createContext<LanguageContextType>({
+  language: { language: 'en' },
+  setLanguage: () => {},
 });
 
-interface LanguageProviderProps {
-    children: ReactNode;
-  }
+export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [language, setLanguage] = useState<LanguageState>({ language: 'en' });
 
-export const LanguageProvider = ({ children }: LanguageProviderProps) => {
-    const [language, setLanguage] = useState<Language>(() => {
-      const storedLanguage = localStorage.getItem('language');
-      return storedLanguage ? JSON.parse(storedLanguage) : {language: 'en'};
-    });
-  
-    useEffect(() => {
-      localStorage.setItem('language', JSON.stringify(language));
-    }, [language]);
-  
-    return <LanguageContext.Provider value={{ language, setLanguage }}>{children}</LanguageContext.Provider>;
-  };
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+export const useLanguage = () => useContext(LanguageContext);
