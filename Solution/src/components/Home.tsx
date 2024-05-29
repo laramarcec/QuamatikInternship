@@ -32,13 +32,13 @@ const Home: React.FC = () => {
     <div className='home-div'>
       <p className='home-header-p'>{translations[language.language].header}</p>
       <div className='home-buttons'>
-        <Link to='/redirect/Printed queue number ticket' className='home-button'>
+        <Link to='/A1/Printed-queue-number-ticket' className='home-button'>
           <div className='button-number-background'>
             <p className='button-number'>1</p>
           </div>
           <p className='button-text'>{translations[language.language].button1}</p>
         </Link>
-        <Link to='/redirect/SMS queue number notification' className='home-button'>
+        <Link to='/A1/SMS-queue-number-notification' className='home-button'>
           <div className='button-number-background'>
             <p className='button-number'>2</p>
           </div>
@@ -46,7 +46,7 @@ const Home: React.FC = () => {
         </Link>
       </div>
       <p className='home-footer-p'>
-        <Link to='/redirect/environment'>{translations[language.language].footer}</Link>
+        <Link to='/A1/environment'>{translations[language.language].footer}</Link>
       </p>
     </div>
   );

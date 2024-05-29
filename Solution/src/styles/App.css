@@ -8,3 +8,7 @@ div{
   max-width: 100vw;
   overflow: hidden;
 }
+
+.redirect-div{
+  font-size: 1.5rem;
+}

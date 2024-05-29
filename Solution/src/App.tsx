@@ -17,7 +17,7 @@ function App() {
         <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/redirect/:option" element={<Redirect />} />
+          <Route path="/A1/:option" element={<Redirect />} />
         </Routes>
         </Suspense>
       </Router>
